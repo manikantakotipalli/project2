@@ -1,0 +1,96 @@
+create database onlineexam;
+
+use onlineexam;
+
+=============================================
+                ADMIN lOGIN
+				
+create table adminlogin(username varchar(30)  ,passwords varchar(30) not null, primary key (username));
+
+insert into adminlogin values('manikanta','manikanta@123');
+
+=============================================
+                STUDENT LOGIN
+				
+create table studentlogin(username varchar(30)  ,passwords varchar(30) not null, primary key (username));    
+
+============================================
+                FACULTY LOGIN            
+                        
+ create table facultylogin(username varchar(30)  ,passwords varchar(30) not null, primary key (username));
+
+============================================= 
+                 COURSE TABLE           
+create table coursedata(course_id int  auto_increment, course_name varchar(30) not null, primary key(course_id));
+	
+	insert into coursedata (course_name) values('Java Full Stack');
+    insert into coursedata (course_name)values('Python Full Stack');
+    insert into coursedata (course_name)values('Devops, Azure and cloud');
+    insert into coursedata (course_name) values('Testing Tools');
+                  
+=============================================				  
+                 STUDENT DATA TABLE
+     
+
+     
+create table studentdata(student_id int  auto_increment, first_name varchar(30) not null, last_name varchar(30) not null, phone_number long not null,
+						passwords varchar(30) not null, email_id varchar (30) not null, course_name  int not null, batch_number int  not null,
+                        
+                        primary key(student_id),
+                        
+                        foreign key(course_name)references coursedata(course_id));
+                        	
+ =============================================                     
+                       FACULTY DATA TABLE
+	create table facultydata(faculty_id int  auto_increment, first_name varchar(30) not null,
+                            last_name varchar(30) not null ,phone_number long not null, email_id varchar(30) not null, course_name  int not null,
+                            passwords varchar (30) not null,
+    
+                            primary key(faculty_id),
+                               foreign key(course_name)references coursedata(course_id));
+==================================================
+                     QUESTION TABLE
+     
+     Create table question(question_id int auto_increment, question_name varchar(100),
+         primary key(question_id));
+     
+===============================================   
+                     ANSWERS TABLE
+  
+   create table answers( answers_id int auto_increment, question_id int, answer_name varchar(100),
+                         primary key(answers_id),
+                         foreign key(question_id)references question(question_id));
+                        
+                         
+===============================================
+                   CORRECT ANSWERS TABLE
+   
+create table correctanswer(answer_id int, question_id int,correctanswer varchar(100),
+							foreign key(answer_id)references answers(answers_id),
+                            foreign key(question_id)references question(question_id)
+                            );
+	
+=================================================
+    
+   
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    
